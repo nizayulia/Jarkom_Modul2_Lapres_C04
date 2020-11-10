@@ -66,7 +66,7 @@
 
 
   ```
-  www	IN CNAME semeruc04.pw.
+  www	IN	CNAME	semeruc04.pw.
   ```
 
 - Kemudian restart bind9 dengan perintah
@@ -75,13 +75,13 @@
   service bind9 restart
   ```
 
-- Lalu cek dengan melakukan **host -t CNAME www.semeruc04.pw* atau **ping www.semeruc04.pw**
+- Lalu cek dengan melakukan  **ping www.semeruc04.pw**
 
 
 
-### Membuat subdomain http://www.penanjakan.semeruc04.pw
+### 3. Membuat subdomain http://www.penanjakan.semeruc04.pw
 
-- Edit file **/etc/bind/jarkom/jarkom2020.com** lalu tambahkan subdomain untuk **semeruc04.pw** yang mengarah ke IP *MALANG*.
+- Edit file **/etc/bind/jarkom/semeruc04.pw** lalu tambahkan subdomain untuk **semeruc04.pw** yang mengarah ke IP *MALANG*.
 
   ```
   nano /etc/bind/jarkom/semeruc04.pw
@@ -90,7 +90,7 @@
 - Tambahkan konfigurasi seperti pada gambar ke dalam file **jarkom2020.com**.
 
   ```
-  penanjakan	IN 	A	10.151.77.42 ;IP MALANG
+  penanjakan	IN 	A	10.151.77.42 ; IP MALANG
   ```
 
 - Restart service bind  
@@ -102,7 +102,7 @@
 - Coba ping ke subdomain dengan perintah berikut dari client *GRESIK*
 
   ```
-  ping neko.jarkom2020.com
+  ping penanjakan.semeruc04.pw
 
   ```
   
