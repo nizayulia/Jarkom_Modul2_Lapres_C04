@@ -41,8 +41,6 @@
   nano /etc/bind/jarkom/semeruc04.pw
   ```
 
-![konfig jarkom2020](gambar/3.png)
-
 - Restart bind9 dengan perintah 
 
   ```
@@ -55,15 +53,11 @@
 	nano /etc/resolv.conf
 	```
 
-![ping](gambar/4.png)
-
 - Untuk mencoba koneksi DNS, lakukan ping domain **semeruc04.pw** dengan melakukan  perintah berikut pada client *GRESIK* dan *SIDOARJO*
 
   ```
   ping semeruc04.pw
   ```
-
-![ping](gambar/5.png)
 
 
 ### 2. Membuat Alias www.semeruc04.pw
@@ -84,7 +78,6 @@
 - Lalu cek dengan melakukan **host -t CNAME www.semeruc04.pw* atau **ping www.semeruc04.pw**
 
 
-![DNS](gambar/10.png)
 
 ### Membuat subdomain http://www.penanjakan.semeruc04.pw
 
@@ -112,8 +105,6 @@
   ping neko.jarkom2020.com
 
   ```
-
-  ![DNS](gambar/16.png)
   
 
 ### 1.2.D Reverse DNS (Record PTR)
