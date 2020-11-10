@@ -375,44 +375,18 @@ allow-query{any;};
 
 
 
-### 1.3 Keterangan Configurasi Zone file
+### 4. reverse domain untuk domain utama. ```Done```
+### 5. DNS Server Slave pada MOJOKERTO
+### 6. subdomain dengan alamat http://gunung.semeruyyy.pw yang didelegasikan pada server MOJOKERTO dan mengarah ke IP Server PROBOLINGGO.
+### 7. subdomain dengan nama http://naik.gunung.semeruyyy.pw, domain ini diarahkan ke IP Server PROBOLINGGO.
 
-1. #### Penulisan Serial
+### 8. Domain http://semeruyyy.pw memiliki DocumentRoot pada /var/www/semeruyyy.pw. Awalnya web dapat diakses menggunakan alamat http://semeruyyy.pw/index.php/home.
 
-   Ditulis dengan format YYYYMMDDXX. Serial di increment setiap melakukan perubahan pada file zone.
-
-   ```
-   YYYY adalah tahun
-   MM adalah bulan
-   DD adalah tanggal
-   XX adalah counter
-   ```
-
-   Contoh:
-
-   ![DNS](gambar/7.png)
-
-2. #### Penggunaan Titik
-
-   ![DNS](gambar/17.png)
-
-   Pada salah satu contoh di atas, dapat kita amati pada kolom keempat terdapat record yang menggunakan titik pada akhir kata dan ada yang tidak. Penggunaan titik berfungsi sebagai penentu FQDN (Fully-Qualified Domain Name) suatu domain.
-
-   Contohnya jika "**jarkom2020.com.**" di akhiri dengan titik maka akan dianggap sebagai FQDN dan akan dibaca sebagai "**jarkom2020.com**" , sedangkan ns1 di atas tidak menggunakan titik sehingga dia tidak terbaca sebagai FQDN. Maka ns1 akan di tambahkan di depan terhadap nilai $ORIGIN sehinga ns1 akan terbaca sebagai "**ns1.jarkom2020.com**" . Nilai $ORIGIN diambil dari penamaan zone yang terdapat pada  */etc/bind/named.conf.local*.
-
-3. #### Penulisan Name Server (NS) record
-
-   Salah satu aturan penulisan NS record adalah dia harus menuju A record., bukan CNAME. 
-
-
-
-## Latihan
-
-1. Buatlah agar bila kita mengecek *IP MALANG* menggunakan dnsutils (host -t PTR 'IP MALANG') hasilnya ip tersebut dimiliki oleh domain **jarkom.com** !
-2. Buatlah subdomain **ngerjain.jarkom.com**. Lalu buatlah subdomain dalam subdomain dalam subdomain **yyy.lagi.ngerjain.jarkom.com** ! (yyy = nama kelompok)
-
-## References
-* https://computer.howstuffworks.com/dns.htm
-* http://knowledgelayer.softlayer.com/faq/what-does-serial-refresh-retry-expire-minimum-and-ttl-mean
-* https://en.wikipedia.org/wiki/List_of_DNS_record_types
-* https://kb.indowebsite.id/knowledge-base/pengertian-catatan-dns-atau-record-dns/
+### 9. diaktifkan mod rewrite agar urlnya menjadi http://semeruyyy.pw/home.
+### 10.  Web http://penanjakan.semeruyyy.pw akan digunakan untuk menyimpan assets file yang memiliki DocumentRoot pada /var/www/penanjakan.semeruyyy.pw dan memiliki struktur folder ...
+### 11. Pada folder /public dibolehkan directory listing namun untuk folder yang berada di dalamnya tidak dibolehkan.
+### 12. Untuk mengatasi HTTP Error code 404, disediakan file 404.html pada folder /errors untuk mengganti error default 404 dari Apache. 
+### 13. Untuk mengakses file assets javascript awalnya harus menggunakan url http://penanjakan.semeruyyy.pw/public/javascripts. selesai. ### 14. http://naik.gunung.semeruyyy.pw sudah bisa diakses hanya dengan menggunakan port 8888. DocumentRoot web berada pada /var/www/naik.gunung.semeruyyy.pw.
+### 15. web http://naik.gunung.semeruyyy.pw agar diberi autentikasi password dengan username “semeru” dan password “kuynaikgunung”
+### 16. mengunjungi IP PROBOLINGGO akan dialihkan secara otomatis ke http://semeruyyy.pw.
+### 17. request gambar yang memiliki substring “semeru” akan diarahkan menuju semeru.jpg.
