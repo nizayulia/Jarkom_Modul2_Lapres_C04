@@ -2,139 +2,15 @@
 
 ### 8. Domain http://semeruyyy.pw memiliki DocumentRoot pada /var/www/semeruyyy.pw. Awalnya web dapat diakses menggunakan alamat http://semeruyyy.pw/index.php/home.
 
-#### A.1. Pindah ke _directory_ `/etc/apache2/sites-available`
-Gunakan perintah `cd /etc/apache2/sites-available`
+### 9. diaktifkan mod rewrite agar urlnya menjadi http://semeruyyy.pw/home.
+### 10.  Web http://penanjakan.semeruyyy.pw akan digunakan untuk menyimpan assets file yang memiliki DocumentRoot pada /var/www/penanjakan.semeruyyy.pw dan memiliki struktur folder ...
+### 11. Pada folder /public dibolehkan directory listing namun untuk folder yang berada di dalamnya tidak dibolehkan.
+### 12. Untuk mengatasi HTTP Error code 404, disediakan file 404.html pada folder /errors untuk mengganti error default 404 dari Apache. 
+### 13. Untuk mengakses file assets javascript awalnya harus menggunakan url http://penanjakan.semeruyyy.pw/public/javascripts. selesai. ### 14. http://naik.gunung.semeruyyy.pw sudah bisa diakses hanya dengan menggunakan port 8888. DocumentRoot web berada pada /var/www/naik.gunung.semeruyyy.pw.
+### 15. web http://naik.gunung.semeruyyy.pw agar diberi autentikasi password dengan username “semeru” dan password “kuynaikgunung”
+### 16. mengunjungi IP PROBOLINGGO akan dialihkan secara otomatis ke http://semeruyyy.pw.
+### 17. request gambar yang memiliki substring “semeru” akan diarahkan menuju semeru.jpg.
 
-<img src="Gambar/8.png" width="500">
-
-Dapat dilihat di sana terdapat dua buah file:
-+ file __default__, file konfigurasi website default apache untuk http.
-+ file __default-ssl__, file konfigurasi website default apache untuk https.
-  
-__Catatan tambahan__ :
-
-Cek versi apache2 yang telah kalian install dengan menggunakan command : `apache2 -v`. Jika versi apache2 yang telah kalian install versi 2.2.x maka mengikuti sesuai modul. Jika versi apache yang telah kalian install versi 2.4.x maka mengikuti sesuai modul dengan catatan tambahan tertentu.
-
-#### A.2. Buka file ___default___
-Untuk versi 2.2.x gunakan perintah `nano /etc/apache2/sites-available/default`. Sedangkan untuk versi 2.4.x gunakan perintah `nano /etc/apache2/sites-available/default.conf`
-
-__Catatan tambahan__  :
-
-Untuk versi 2.4.x setiap configurasi file yang berada di directory `/etc/apache2/sites-available` nama file-nya ditambahi dengan `.conf`. Contoh : `/etc/apache2/sites-available/default.conf`. Karena jika tidak ditambahi dengan `.conf` maka akan error.
-
-<img src="Gambar/9.png" width="500">
-
-#### A.3.  Pada file _default_ terdapat konfigurasi standar apache
-Beberapa diantaranya adalah:
-##### __Port__ yang digunakan
-```
-<VirtualHost *:80>
-```
-Konfigurasi di atas menunjukkan bahwa port yang digunakan adalah port 80
-
-##### ___Directory___ tempat file website kita berada
-```
-DocumentRoot /var/www
-```
-+ Untuk sesi lab JarKom ini silahkan mengubah _DocumentRoot_-nya menjadi `/var/www/html`
-+ Begitu juga dengan _line_ ke-9, diubah dari `<Directory /var/www/>` menjadi `<Directory /var/www/html>` 
-+ Jangan lupa lakukan `service apache2 restart` setelah melakukan perubahan konfigurasi agar perubahan yang telah dilakukan teraplikasikan
-
-#### A.4. Pindah ke _directory_ yang ditunjuk oleh _DocumentRoot_ pada file _default_
-Gunakan perintah `cd /var/www/`
-
-+ Karena tadi kita mengubah _DocumentRoot_ di file _default_ menjadi `/var/www/html`, maka sekarang buatlah _directory_ bernama "html" dengan perintah `mkdir /var/www/html`
-
-#### A.5. Pindah ke _directory_ `/var/www/html` dan buat file _index.php_
-Gunakan perintah `nano /var/www/html/index.php` dan isi file  tersebut dengan
-```
-<?php
-	phpinfo();
-?>
-```
-
-<img src="Gambar/10.png" width="500">
-
-#### A.6. Buka browser laptop/komputer masing-masing
-Akses alamat __http://[IP Mojokerto]/index.php__
-
-<img src="Gambar/11.png">
-
-+ __Catatan__:
-	Apabila tampilan web tidak muncul seperti gambar di atas dan hanya muncul plain text isi file index.php, silahkan install **libapache2-mod-php7.0** dengan menjalankan perintah
-	```
-	apt-get install libapache2-mod-php7.0
-	```
-	lalu restart apache dengan perintah
-	```
-	service apache restart
-	```
-
-### B. Membuat Konfigurasi Website Menggunakan Port 8080
-#### B.1 Pindah ke _directory_ `/etc/apache2/sites-available`
-Pindah ke _directory_ `/etc/apache2/sites-available` menggunakan perintah 
-```
-cd /etc/apache2/sites-available
-```
-Copy file _default_ menjadi file _default-8080_ dengan perintah
-```
-cp default default-8080
-```
-Jangan lupa untuk menambahkan `.conf` jika apache2 versi 2.4.x. Jika sudah kalian bisa rename file tersebut menggunakan perintah
-```
-mv default-8080 default-8080.conf
-```
-
-#### B.2 Buka file _default-8080_
-Buka file yang telah kalian buat pada sebelumnya. Gunakan perintah `nano /etc/apache2/sites-available/default-8080`. Jangan lupa untuk menambahkan `.conf` jika apache2 versi 2.4.x. 
-+ Kemudian ubah port yang digunakan. Dimana awalnya port `80` menjadi port `8080`.
-+ Ubah juga _DocumentRoot_ yang awalnya `/var/www/html` menjadi `/var/www/web-8080`.
-
-<img src="Gambar/12.png" width="500">
-
-#### B.3 Tambahkan _port 8080_ pada file `ports.conf`
-File __ports.conf__ berada pada _directory_ `/etc/apache2`
-
-Cara menambahkan port yang perlu didengar adalah dengan menuliskan
-```
-Listen 8080
-```
-
-<img src="Gambar/13.png" width="500">
-
-#### B.4 Aktifkan konfigurasi _default-8080_
-Untuk mengaktifkan suatu konfigurasi, kita menggunakan perintah `a2ensite` diikuti dengan __nama file konfigurasi__ yang telah dibuat.
-Dalam kasus ini perintah yang dijalankan adalah
-```
-a2ensite default-8080
-```
-
-<img src="Gambar/14.png" width="500">
-
-#### B.5 Restart apache
-Gunakan perintah `service apache2 restart`
-
-<img src="Gambar/15.png" width="500">
-
-#### B.6 Pindah ke _directory_ `/var/www`
-Buatlah sebuah _directory_ baru di dalam `var/www` dengan nama __web-8080__
-
-<img src="Gambar/16.png" width="500">
-
-#### B.7 Masuk ke _directory_ `/var/www/web-8080` dan buat file _index.php_
-Isi file __index.php__ tersebut dengan
-```
-<?php
-    echo "Halo, saya running di port 8080";
-?>
-```
-
-<img src="Gambar/17.png" width="500">
-
-#### B.8 Buka browser laptop/komputer masing-masing
-Akses alamat __http://[IP Mojokerto]:8080__
-
-<img src="Gambar/18.png">
 
 ## H. Mari Berimajinasi
 ### A. Setting Domain pada Apache
