@@ -1,94 +1,12 @@
-# **PENTING UNTUK DIBACA**
-1. Pastikan UML *MALANG* dan *MOJOKERTO* Memory yang sebelumnya **96 diganti 256** pada file topologi.sh.
-
-2. Jalankan **iptables** agar client *GRESIK* dan *SIDOARJO* bisa terhubung ke internet.
-
-3. Ketika ingin mengakses internet pastikan sudah mengexport proxy terlebih dahulu. **syntaxnya cek modul pengenalan UML** .
-
-4. Jangan melakukan apapun sebelum asisten memberikan perintah.
-
-5. Ikuti apa yang asisten arahkan.
-
-6. Ketika point 4 dan 5 tidak ditaati **resiko tanggung sendiri!!!**
-
-
-# 1. DNS (Domain Name System)
-
-## 1.1 Teori
-
-### 1.1.A Pengertian
-
-DNS (_Domain Name System_) adalah sistem penamaan untuk semua device (smartphone, computer, atau
-network) yang terhubung dengan internet. DNS Server berfungsi menerjemahkan nama domain menjadi alamat IP. DNS dibuat guna untuk menggantikan sistem penggunaan file host yang dirasa tidak efisien.
-
-### 1.1.B Cara Kerja
-
-![DNS](gambar/1.jpg)
-
-Client akan meminta alamt IP dari suatu domain ke DNS server. Jika pada DNS server data alamat IP dari DNS server tersebut ada maka akan di return alamat IP nya kembali menuju client. Jika DNS server tersebut tidak memiliki alamat IP dari domain tersebut maka dia akan bertanya kepada DNS server yang lain sampai alamat domain itu ditemukan.
-
-### 1.1.C Aplikasi DNS Server
-
-Untuk praktikum jarkom kita menggunakan aplikasi BIND9 sebagai DNS server, karena BIND(Berkley Internet Naming Daemon) adalah DNS server yang paling banyak digunakan dan juga memiliki fitur-fitur yang cukup lengkap.
-
-### 1.1.D List DNS Record
-| Tipe          | Deskripsi                     |
-| ------------- |:-----------------------------|
-| A             | Memetakan nama domain ke alamat IP (IPv4) dari komputer hosting domain|
-| AAAA          | AAAA record hampir mirip A record, tapi mengarahkan domain ke alamat Ipv6|
-| CNAME         | Alias ​​dari satu nama ke nama lain: pencarian DNS akan dilanjutkan dengan mencoba lagi pencarian dengan nama baru|
-| NS            | Delegasikan zona DNS untuk menggunakan authoritative name servers yang diberikan|
-| PTR           | Digunakan untuk Reverse DNS (Domain Name System) lookup|
-| SOA           | Mengacu server DNS yang mengediakan otorisasi informasi tentang sebuah domain Internet|
-| TXT           | Mengijinkan administrator untuk memasukan data acak ke dalam catatan DNS, catatan ini juga digunakan di spesifikasi Sender Policy Framework|
-
-### 1.1.E SOA (Start of Authority)
-
-Adalah informasi yang dimiliki oleh suatu DNS zone.
-
-| Nama          | Deskripsi                     |
-| ------------- |:-----------------------------|
-| Serial        | Jumlah revisi dari file zona ini. Kenaikan nomor ini setiap kali file zone diubah sehingga perubahannya akan didistribusikan ke server DNS sekunder manapun|
-| Refresh       | Jumlah waktu dalam detik bahwa nameserver sekunder harus menunggu untuk memeriksa salinan baru dari zona DNS dari nameserver utama domain. Jika file zona telah berubah maka server DNS sekunder akan memperbarui salinan zona tersebut agar sesuai dengan zona server DNS utama|
-| Retry         | Jumlah waktu dalam hitungan detik bahwa nameserver utama domain (atau server) harus menunggu jika upaya refresh oleh nameserver sekunder gagal sebelum mencoba refresh zona domain dengan nameserver sekunder itu lagi|
-| Expire        | Jumlah waktu dalam hitungan detik bahwa nameserver sekunder (atau server) akan menahan zona sebelum tidak lagi mempunyai otoritas|
-| Minimum       | Jumlah waktu dalam hitungan detik bahwa catatan sumber daya domain valid. Ini juga dikenal sebagai TTL minimum, dan dapat diganti oleh TTL catatan sumber daya individu|
-| TTL           | (waktu untuk tinggal) - Jumlah detik nama domain di-cache secara lokal sebelum kadaluarsa dan kembali ke nameserver otoritatif untuk informasi terbaru|
 
 
 
-------
+#### Anggota :
+#### 05111840000029	Khofifah Nurlaela
+#### 05111840000053	Yulia Niza
 
 
-
-
-
-## 1.2 Praktik
-
-### 1.2.A Buat Topologi Berikut
-
-![Topologi](gambar/topologi.png)
-
-Seperti pada modul pengenalan UML kemaren
-
-### 1.2.A Instalasi bind
-
-- Buka *MALANG* dan update package lists dengan menjalankan command:
-
-	```
-	apt-get update
-	```
-
-- Setalah melakukan update silahkan install aplikasi bind9 pada *MALANG* dengan perintah:
-
-	```
-	apt-get install bind9 -y
-	```
-
-![instal bind9](gambar/1.png)
-
-### 1.2.B Pembuatan Domain
-Pada sesilab ini kita akan membuat domain **jarkom2020.com**.
+### 1. Membuat Domain http://semeruc04.pw 
 
 - Lakukan perintah pada *MALANG*. Isikan seperti berikut:
 
@@ -96,16 +14,14 @@ Pada sesilab ini kita akan membuat domain **jarkom2020.com**.
    nano /etc/bind/named.conf.local
   ```
 
-- Isikan configurasi domain **jarkom2020.com** sesuai dengan syntax berikut:
+- Isikan configurasi domain **semeruc04.pw** sesuai dengan syntax berikut:
 
   ```
-  zone "jarkom2020.com" {
+  zone "semeruc04.pw" {
   	type master;
-  	file "/etc/bind/jarkom/jarkom2020.com";
+  	file "/etc/bind/jarkom/semeruc04.pw";
   };
   ```
-
-![config jarkom2020.com](gambar/2.png)
 
 - Buat folder **jarkom** di dalam **/etc/bind**
 
@@ -113,16 +29,16 @@ Pada sesilab ini kita akan membuat domain **jarkom2020.com**.
   mkdir /etc/bind/jarkom
   ```
 
-- Copykan file **db.local** pada path **/etc/bind** ke dalam folder **jarkom** yang baru saja dibuat dan ubah namanya menjadi **jarkom2020.com**
+- Copykan file **db.local** pada path **/etc/bind** ke dalam folder **jarkom** yang baru saja dibuat dan ubah namanya menjadi **semeruc04.pw**
 
   ```
-  cp /etc/bind/db.local /etc/bind/jarkom/jarkom2020.com
+  cp /etc/bind/db.local /etc/bind/jarkom/semeruc04.pw
   ```
 
-- Kemudian buka file **jarkom2020.com** dan edit seperti gambar berikut dengan IP *MALANG* masing-masing kelompok:
+- Kemudian buka file **semeruc04.pw** dan edit seperti gambar berikut dengan IP *MALANG* :
 
   ```
-  nano /etc/bind/jarkom/jarkom2020.com
+  nano /etc/bind/jarkom/semeruc04.pw
   ```
 
 ![konfig jarkom2020](gambar/3.png)
@@ -131,17 +47,7 @@ Pada sesilab ini kita akan membuat domain **jarkom2020.com**.
 
   ```
   service bind9 restart
-  
-  ATAU
-  
-  named -g //Bisa digunakan untuk restart sekaligus debugging
   ```
-
-
-
-### 1.2.C Setting nameserver pada client
-
-Domain yang kita buat tidak akan langsung dikenali oleh client oleh sebab itu kita harus merubah settingan nameserver yang ada pada client kita.
 
 - Pada client *GRESIK* dan *SIDOARJO* arahkan nameserver menuju IP *MALANG* dengan mengedit file _resolv.conf_ dengan mengetikkan perintah 
 
@@ -151,15 +57,64 @@ Domain yang kita buat tidak akan langsung dikenali oleh client oleh sebab itu ki
 
 ![ping](gambar/4.png)
 
-- Untuk mencoba koneksi DNS, lakukan ping domain **jarkom2020.com** dengan melakukan  perintah berikut pada client *GRESIK* dan *SIDOARJO*
+- Untuk mencoba koneksi DNS, lakukan ping domain **semeruc04.pw** dengan melakukan  perintah berikut pada client *GRESIK* dan *SIDOARJO*
 
   ```
-  ping jarkom2020.com
+  ping semeruc04.pw
   ```
 
 ![ping](gambar/5.png)
 
 
+### 2. Membuat Alias www.semeruc04.pw
+
+- Buka file **semeruc04.pw** pada server *MALANG* dan tambahkan konfigurasi seperti pada gambar berikut:
+
+
+  ```
+  www	IN CNAME semeruc04.pw.
+  ```
+
+- Kemudian restart bind9 dengan perintah
+
+  ```
+  service bind9 restart
+  ```
+
+- Lalu cek dengan melakukan **host -t CNAME www.semeruc04.pw* atau **ping www.semeruc04.pw**
+
+
+![DNS](gambar/10.png)
+
+### Membuat subdomain http://www.penanjakan.semeruc04.pw
+
+- Edit file **/etc/bind/jarkom/jarkom2020.com** lalu tambahkan subdomain untuk **semeruc04.pw** yang mengarah ke IP *MALANG*.
+
+  ```
+  nano /etc/bind/jarkom/semeruc04.pw
+  ```
+
+- Tambahkan konfigurasi seperti pada gambar ke dalam file **jarkom2020.com**.
+
+  ```
+  penanjakan	IN 	A	10.151.77.42 ;IP MALANG
+  ```
+
+- Restart service bind  
+
+  ```
+  service bind9 restart
+  ```
+
+- Coba ping ke subdomain dengan perintah berikut dari client *GRESIK*
+
+  ```
+  ping neko.jarkom2020.com
+
+  ```
+
+  ![DNS](gambar/16.png)
+  
 
 ### 1.2.D Reverse DNS (Record PTR)
 
@@ -214,33 +169,6 @@ Jika pada pembuatan domain sebelumnya DNS server kita bekerja menerjemahkan stri
   ```
 
 ![host](gambar/8.png)
-
-
-
-### 1.2.E Record CNAME
-Record CNAME adalah sebuah record yang membuat alias name dan mengarahkan domain ke alamat/domain yang lain.
-
-Langkah-langkah membuat record CNAME:
-
-- Buka file **jarkom2020.com** pada server *MALANG* dan tambahkan konfigurasi seperti pada gambar berikut:
-
-
-![DNS](gambar/9.png)
-
-
-
-- Kemudian restart bind9 dengan perintah
-
-  ```
-  service bind9 restart
-  ```
-
-- Lalu cek dengan melakukan **host -t CNAME www.jarkom2020.com** atau **ping www.jarkom2020.com**. Hasilnya harus mengarah ke host dengan IP *MALANG*.
-
-
-![DNS](gambar/10.png)
-
-
 
 ### 1.2.F Membuat DNS Slave
 
@@ -325,37 +253,7 @@ DNS Slave adalah DNS cadangan yang akan diakses jika server DNS utama mengalami 
 
 
 
-### 1.2.G Membuat Subdomain
 
-Subdomain adalah bagian dari sebuah nama domain induk. Subdomain umumnya mengacu ke suatu alamat fisik di sebuah situs contohnya: **jarkom2020.com** merupakan sebuah domain induk. Sedangkan **neko.jarkom2020.com** merupakan sebuah subdomain.
-
-- Edit file **/etc/bind/jarkom/jarkom2020.com** lalu tambahkan subdomain untuk **jarkom2020.com** yang mengarah ke IP *MALANG*.
-
-  ```
-  nano /etc/bind/jarkom/jarkom2020.com
-  ```
-
-- Tambahkan konfigurasi seperti pada gambar ke dalam file **jarkom2020.com**.
-
-![DNS](gambar/15.png)
-
-- Restart service bind  
-
-  ```
-  service bind9 restart
-  ```
-
-- Coba ping ke subdomain dengan perintah berikut dari client *GRESIK*
-
-  ```
-  ping neko.jarkom2020.com
-  
-  ATAU
-  
-  host -t A neko.jarkom2020.com
-  ```
-
-  ![DNS](gambar/16.png)
 
 
 
