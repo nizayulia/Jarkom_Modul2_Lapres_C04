@@ -123,7 +123,7 @@
   };
   ```
 
-![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/dns_reserve_1.png?
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/dns_reserve_1.png?raw=true)
 
 - Copykan file **db.local** pada path **/etc/bind** ke dalam folder **jarkom** yang baru saja dibuat dan ubah namanya menjadi **77.151.10.in-addr.arpa**
 
@@ -135,7 +135,7 @@
 
 - Edit file **77.151.10.in-addr.arpa** menjadi seperti gambar di bawah ini
 
-![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/dns_reserve_2.png?
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/dns_reserve_2.png?raw=true)
 
 - Kemudian restart bind9 dengan perintah 
 
@@ -154,7 +154,7 @@
   //Kembalikan nameserver agar tersambung dengan MALANG
   host -t PTR 10.151.77.42
   ```
-![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/dns_reserve_3.png?
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/dns_reserve_3.png?raw=true)
 
 ### 5. DNS Server Slave pada MOJOKERTO
 #### I. Konfigurasi Pada Server MALANG
