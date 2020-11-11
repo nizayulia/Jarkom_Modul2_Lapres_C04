@@ -107,10 +107,7 @@
   ```
   
 
-### 1.2.D Reverse DNS (Record PTR)
-
-Jika pada pembuatan domain sebelumnya DNS server kita bekerja menerjemahkan string domain **jarkom2020.com** kedalam alamat IP agar dapat dibuka, maka Reverse DNS atau Record PTR digunakan untuk menerjemahkan alamat IP ke alamat domain yang sudah diterjemahkan sebelumnya.
-
+### 4. Reverse domain untuk domain utama
 - Edit file **/etc/bind/named.conf.local** pada *MALANG*
 
   ```
@@ -120,26 +117,25 @@ Jika pada pembuatan domain sebelumnya DNS server kita bekerja menerjemahkan stri
 - Lalu tambahkan konfigurasi berikut ke dalam file **named.conf.local**
 
   ```
-  zone "71.151.10.in-addr.arpa" {
+  zone "77.151.10.in-addr.arpa" {
       type master;
-      file "/etc/bind/jarkom/71.151.10.in-addr.arpa";
+      file "/etc/bind/jarkom/77.151.10.in-addr.arpa";
   };
   ```
 
-![](gambar/6.png)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/dns_reserve_1.png?
 
-- Copykan file **db.local** pada path **/etc/bind** ke dalam folder **jarkom** yang baru saja dibuat dan ubah namanya menjadi **71.151.10.in-addr.arpa**
+- Copykan file **db.local** pada path **/etc/bind** ke dalam folder **jarkom** yang baru saja dibuat dan ubah namanya menjadi **77.151.10.in-addr.arpa**
 
   ```
-  cp /etc/bind/db.local /etc/bind/jarkom/71.151.10.in-addr.arpa
+  cp /etc/bind/db.local /etc/bind/jarkom/77.151.10.in-addr.arpa
   ```
 
-  *Keterangan 71.151.10 adalah 3 byte pertama IP MALANG yang dibalik urutan penulisannya*
+  *Keterangan 77.151.10 adalah 3 byte pertama IP MALANG yang dibalik urutan penulisannya*
 
-- Edit file **71.151.10.in-addr.arpa** menjadi seperti gambar di bawah ini
+- Edit file **77.151.10.in-addr.arpa** menjadi seperti gambar di bawah ini
 
-
-![konfig](gambar/7.png)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/dns_reserve_2.png?
 
 - Kemudian restart bind9 dengan perintah 
 
@@ -156,40 +152,31 @@ Jika pada pembuatan domain sebelumnya DNS server kita bekerja menerjemahkan stri
   apt-get install dnsutils
   
   //Kembalikan nameserver agar tersambung dengan MALANG
-  host -t PTR "IP MALANG"
+  host -t PTR 10.151.77.42
   ```
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/dns_reserve_3.png?
 
-![host](gambar/8.png)
-
-### 1.2.F Membuat DNS Slave
-
-DNS Slave adalah DNS cadangan yang akan diakses jika server DNS utama mengalami kegagalan. Kita akan menjadikan server *MOJOKERTO* sebagai DNS slave dan server *MALANG* sebagai DNS masternya.
-
+### 5. DNS Server Slave pada MOJOKERTO
 #### I. Konfigurasi Pada Server MALANG
 
 - Edit file **/etc/bind/named.conf.local** dan sesuaikan dengan syntax berikut
 
   ```
-  zone "jarkom2020.com" {
+  zone "semeruc04.pw" {
       type master;
       notify yes;
-      also-notify { "IP MOJOKERTO"; }; // Masukan IP MOJOKERTO tanpa tanda petik
-      allow-transfer { "IP MOJOKERTO"; }; // Masukan IP MOJOKERTO tanpa tanda petik
-      file "/etc/bind/jarkom/jarkom2020.com";
+      also-notify { 10.151.77.43; }; // Masukan IP MOJOKERTO tanpa tanda petik
+      allow-transfer { 10.151.77.43; }; // Masukan IP MOJOKERTO tanpa tanda petik
+      file "/etc/bind/jarkom/semeruc04.pw";
   };
   ```
-
   ![DNS](gambar/11.png)
-
-
 
 - Lakukan restart bind9
 
   ```
   service bind9 restart
   ```
-
-
 
 #### II. Konfigurasi Pada Server MOJOKERTO
 
@@ -208,10 +195,10 @@ DNS Slave adalah DNS cadangan yang akan diakses jika server DNS utama mengalami 
 - Kemudian buka file **/etc/bind/named.conf.local** pada MOJOKERTO dan tambahkan syntax berikut:
 
   ```
-  zone "jarkom2020.com" {
+  zone "semeruc04.pw" {
       type slave;
-      masters { "IP MALANG"; }; // Masukan IP MALANG tanpa tanda petik
-      file "/var/lib/bind/jarkom2020.com";
+      masters { 10.151.77.42; }; // Masukan IP MALANG tanpa tanda petik
+      file "/var/lib/bind/semeruc04.pw";
   };
   ```
 
@@ -222,8 +209,6 @@ DNS Slave adalah DNS cadangan yang akan diakses jika server DNS utama mengalami 
   ```
   service bind9 restart
   ```
-
-
 
 #### III. Testing
 
@@ -242,15 +227,7 @@ DNS Slave adalah DNS cadangan yang akan diakses jika server DNS utama mengalami 
 
 ![DNS](gambar/14.png)
 
-
-
-
-
-
-
-### 1.2.H Delegasi Subdomain
-
-Delegasi subdomain adalah pemberian wewenang atas sebuah subdomain kepada DNS baru.
+### 6. Subdomain dengan alamat http://gunung.semeruyyy.pw yang didelegasikan pada server MOJOKERTO dan mengarah ke IP Server PROBOLINGGO
 
 #### I. Konfigurasi Pada Server *MALANG*
 
@@ -280,10 +257,10 @@ Delegasi subdomain adalah pemberian wewenang atas sebuah subdomain kepada DNS ba
 - Kemudian edit file **/etc/bind/named.conf.local** menjadi seperti gambar di bawah:
 
   ```
-  zone "jarkom2020.com" {
+  zone "semeruc04.pw" {
       type master;
-      file "/etc/bind/jarkom/jarkom2020.com";
-      allow-transfer { "IP MOJOKERTO"; }; // Masukan IP MOJOKERTO tanpa tanda petik
+      file "/etc/bind/jarkom/semeruc04.pw";
+      allow-transfer { 10.151.77.43; }; // Masukan IP MOJOKERTO tanpa tanda petik
   };
   ```
 
@@ -318,14 +295,14 @@ Delegasi subdomain adalah pemberian wewenang atas sebuah subdomain kepada DNS ba
 
 - Kemudian buat direktori dengan nama **delegasi** 
 
-- Copy **db.local** ke direktori pucang dan edit namanya menjadi **its.jarkom2020.com** 
+- Copy **db.local** ke direktori delegasi dan edit namanya menjadi **gunung.semeruc04.pw** 
 
   ```
   mkdir /etc/bind/delegasi
-  cp /etc/bind/db.local /etc/bind/delegasi/its.jarkom2020.com
+  cp /etc/bind/db.local /etc/bind/delegasi/gunung.semeruc04.pw
   ```
 
-- Kemudian edit file **its.jarkom2020.com** menjadi seperti dibawah ini
+- Kemudian edit file **/etc/bind/delegasi/gunung.semeruc04.pw** menjadi seperti dibawah ini
 
 ![DNS](gambar/22.png)
 
@@ -337,50 +314,41 @@ Delegasi subdomain adalah pemberian wewenang atas sebuah subdomain kepada DNS ba
 
 #### III. Testing
 
-- Lakukan ping ke domain **its.jarkom2020.com** dan **integra.its.jarkom2020.com** dari client *GRESIK*
+- Lakukan ping ke domain **gunung.semeruc04.pw** dari client *GRESIK*
 
 ![DNS](gambar/23.png)
 
 
-
-### 1.2.I DNS Forwarder
-
-DNS Forwarder digunakan untuk mengarahkan DNS Server ke IP yang ingin dituju.
-
-- Edit file **/etc/bind/named.conf.options** pada server *MALANG*
-- Uncomment pada bagian ini
-
-```
-forwarders {
-    8.8.8.8;
-};
-```
-- Comment pada bagian ini
-
-```
-// dnssec-validation auto;
-```
-- Dan tambahkan
-
-```
-allow-query{any;};
-```
-
-![DNS](gambar/24.png)
-
-- Harusnya jika nameserver pada file **/etc/resolv.conf** di client diubah menjadi IP MALANG maka akan di forward ke IP DNS google yaitu 8.8.8.8 dan bisa mendapatkan koneksi.
-- Coba ping google.com pada GRESIK, kalau benar maka tetap bisa mendapatkan respon dari google
-
-![DNS](gambar/25.png)
-
-
-
-### 4. reverse domain untuk domain utama. ```Done```
-### 5. DNS Server Slave pada MOJOKERTO
-### 6. subdomain dengan alamat http://gunung.semeruyyy.pw yang didelegasikan pada server MOJOKERTO dan mengarah ke IP Server PROBOLINGGO.
 ### 7. subdomain dengan nama http://naik.gunung.semeruyyy.pw, domain ini diarahkan ke IP Server PROBOLINGGO.
+#### I. Konfigurasi pada MOJOKERTO
+- Edit file **/etc/bind/delegasi/gunung.semeruc04.pw** menjadi seperti dibawah ini
+
+![DNS](gambar/22.png)
+
+- Restart bind9
+
+  ```
+  service bind9 restart
+  ```
+
+#### III. Testing
+
+- Lakukan ping ke domain **naik.gunung.semeruc04.pw** dari client *GRESIK*
+
+![DNS](gambar/23.png)
 
 ### 8. Domain http://semeruyyy.pw memiliki DocumentRoot pada /var/www/semeruyyy.pw. Awalnya web dapat diakses menggunakan alamat http://semeruyyy.pw/index.php/home.
+
+- Pindah ke directory /etc/apache2/sites-available
+- Copy file default menjadi file semeruc04.pw.conf
+- Lalu restart apche dengan perintah
+  ```
+  service apache restart
+  ```
+- Masuk ke directoy.
+- Download halaman web dengan perintah `wget 10.151.36.202/semeru.pw.zip`
+- Kemudian unzip file.
+
 
 ### 9. diaktifkan mod rewrite agar urlnya menjadi http://semeruyyy.pw/home.
 ### 10.  Web http://penanjakan.semeruyyy.pw akan digunakan untuk menyimpan assets file yang memiliki DocumentRoot pada /var/www/penanjakan.semeruyyy.pw dan memiliki struktur folder ...
