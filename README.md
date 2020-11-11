@@ -265,7 +265,7 @@
 
 - Kemudian edit file **/etc/bind/delegasi/gunung.semeruc04.pw** menjadi seperti dibawah ini
 
-![DNS](gambar/22.png)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/delegasi subdomain_1.JPG?raw=true)
 
 - Restart bind9
   ```
@@ -281,7 +281,7 @@
 #### I. Konfigurasi pada MOJOKERTO
 - Edit file **/etc/bind/delegasi/gunung.semeruc04.pw** menjadi seperti dibawah ini
 
-![DNS](gambar/22.png)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/delegasi sub subdomain.JPG?raw=true)
 
 - Restart bind9
   ```
@@ -290,13 +290,13 @@
 #### III. Testing
 - Lakukan ping ke domain **naik.gunung.semeruc04.pw** dari client *GRESIK*
 
-![DNS](gambar/23.png)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/delegasi sub subdomain_1.JPG?raw=true)
 
 ### 8. Domain http://semeruc04.pw memiliki DocumentRoot pada /var/www/semeruc04.pw. Awalnya web dapat diakses menggunakan alamat http://semeruc04.pw/index.php/home.
 
 - Pindah ke directory /etc/apache2/sites-available
 - Copy file default menjadi file semeruc04.pw.conf
-![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture8_1.PNG?raw=true)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture8_1.png?raw=true)
 - Lalu restart apche dengan perintah
   ```
   service apache restart
@@ -305,17 +305,17 @@
 - Download halaman web dengan perintah `wget 10.151.36.202/semeru.pw.zip`
 - Kemudian unzip file.
 - rename semeruc04.pw
-![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture8_2.PNG?raw=true)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture8_2.png?raw=true)
 
 ### 9. diaktifkan mod rewrite agar urlnya menjadi http://semeruc04.pw/home.
 - Jalankan perintah `a2enmod rewrite`
 - Pindah ke directory `/var/www/semeruc04.pw` dan buat file `.htaccess` dengan isi file :
 
-![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture9_1.PNG?raw=true)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture9_1.png?raw=true)
 
 - Pindah ke directory `/etc/apache2/sites-available` kemudian buka file `semeruc04.pw`, tambahkan :
 
-![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture9_2.PNG?raw=true)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture9_2.png?raw=true)
 
 - Lalu restart apche dengan perintah
   ```
@@ -323,13 +323,13 @@
   ```
 - Jalankan `semeruc04.pw/home` pada browser.
 
-![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture9_3.PNG?raw=true)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture9_3.png?raw=true)
 
 ### 10.  Web http://penanjakan.semeruc04.pw akan digunakan untuk menyimpan assets file yang memiliki DocumentRoot pada /var/www/penanjakan.semeruc04.pw dan memiliki struktur folder ...
 -	Pindah ke directory `/etc/apache2/sites-available`
 -	Nano `penanjakan.semeruc04.pw.conf`
 
-![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture10.PNG?raw=true)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture10.png?raw=true)
 
 - Lalu restart apche dengan perintah
   ```
@@ -345,34 +345,34 @@
 -	Nano `penanjakan.semeruc04.pw.conf`
 -	Atur `+` untuk dibolehkan dan `-` untuk tidak dibolehkan
 
-![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture11.PNG?raw=true)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture11.png?raw=true)
 
 ### 12. Untuk mengatasi HTTP Error code 404, disediakan file 404.html pada folder /errors untuk mengganti error default 404 dari Apache. 
 -	Pindah ke directory `/etc/apache2/sites-available`
 -	Nano `penanjakan.semeruc04.pw.conf`
 -	Tambahkan :  `ErrorDocument 404 /errors/404.html`
 
-![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture12.PNG?raw=true)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture12.png?raw=true)
 
 ### 13. Untuk mengakses file assets javascript awalnya harus menggunakan url http://penanjakan.semeruc04.pw/public/javascripts. selesai.
 -	Pindah ke directory `/etc/apache2/sites-available`
 -	Nano `penanjakan.semeruc04.pw.conf`
 -	Tambahkan : `Alias “/js” “/var/www/penanjakan.semeruc04.pw/public/javascripts”`
 
-![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture13.PNG?raw=true)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture13.png?raw=true)
 
 ### 14. http://naik.gunung.semeruc04.pw sudah bisa diakses hanya dengan menggunakan port 8888. DocumentRoot web berada pada /var/www/naik.gunung.semeruc04.pw.
 
 -	Pindah ke directory `/etc/apache2` 
 -	Tambahkan `Listen 8888`
 
-![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture14.PNG?raw=true)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture14.png?raw=true)
 
 -	Pindah ke directory `/etc/apache2/sites-available`
 -	Nano `naik.semeruc04.pw`
 -	Config sbg berikut :
 
-![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture14_2.PNG?raw=true)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture14_2.png?raw=true)
 
 -	Pindah ke directory `/var/www`
 -	Download halaman web dengan perintah `wget 10.151.36.202/naik.gunung.semeru.pw.zip`
@@ -380,7 +380,7 @@
 -	`a2ensite default-8888`
 -	Jalankan : `naik.gunung.penanjakan.semeruc04.pw:8888` pada browser.
 
-![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture14_3.PNG?raw=true)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture14_3.png?raw=true)
 
 ### 15. web http://naik.gunung.semeruc04.pw agar diberi autentikasi password dengan username “semeru” dan password “kuynaikgunung”
 ### 16. mengunjungi IP PROBOLINGGO akan dialihkan secara otomatis ke http://semeruc04.pw.
@@ -388,6 +388,6 @@
 -	Nano `000- default.conf`
 -	Ubah documentRoot :
 
-![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture16.PNG?raw=true)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture16.png?raw=true)
 
 ### 17. request gambar yang memiliki substring “semeru” akan diarahkan menuju semeru.jpg.
