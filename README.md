@@ -266,7 +266,7 @@
 
 - Kemudian edit file **/etc/bind/delegasi/gunung.semeruc04.pw** menjadi seperti dibawah ini
 
-![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/nomor6_confIPMojo.JPG?raw=true)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/nomer6_confIPMojo.JPG?raw=true)
 
 - Restart bind9
   ```
