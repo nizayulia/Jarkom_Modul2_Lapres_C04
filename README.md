@@ -7,7 +7,6 @@
 
 
 ### 1. Membuat Domain http://semeruc04.pw 
-
 - Lakukan perintah pada *MALANG*. Isikan seperti berikut:
 
   ```
@@ -58,10 +57,10 @@
   ```
   ping semeruc04.pw
   ```
-![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture1.PNG?raw=true)
+
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture1.png?raw=true)
 
 ### 2. Membuat Alias www.semeruc04.pw
-
 - Buka file **semeruc04.pw** pada server *MALANG* dan tambahkan konfigurasi seperti pada gambar berikut:
 
 
@@ -77,11 +76,10 @@
 
 - Lalu cek dengan melakukan  **ping www.semeruc04.pw**
 
-![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture2.PNG?raw=true)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture2.png?raw=true)
 
 
 ### 3. Membuat subdomain http://www.penanjakan.semeruc04.pw
-
 - Edit file **/etc/bind/jarkom/semeruc04.pw** lalu tambahkan subdomain untuk **semeruc04.pw** yang mengarah ke IP *MALANG*.
 
   ```
@@ -106,7 +104,7 @@
   ping penanjakan.semeruc04.pw
 
   ```
-  ![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture3.PNG?raw=true)
+  ![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture3.png?raw=true)
 
 ### 4. Reverse domain untuk domain utama
 - Edit file **/etc/bind/named.conf.local** pada *MALANG*
@@ -139,6 +137,7 @@
   ```
   host -t PTR 10.151.77.42
   ```
+
 ![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/dns_reserve_3.JPG?raw=true)
 
 ### 5. DNS Server Slave pada MOJOKERTO
@@ -153,7 +152,7 @@
       file "/etc/bind/jarkom/semeruc04.pw";
   };
   ```
-  ![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/dns_slave_1.JPG?raw=true)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/dns_slave_1.JPG?raw=true)
 
 - Lakukan restart bind9
   ```
@@ -179,13 +178,13 @@
 
 ![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/dns_slave_2.JPG?raw=true)
 
+
 - Lakukan restart bind9
   ```
   service bind9 restart
   ```
 
 #### III. Testing
-
 - Pada server *MALANG* silahkan matikan service bind9
   ```
   service bind9 stop
@@ -202,11 +201,12 @@
 
 ### 6. Subdomain dengan alamat http://gunung.semeruc04.pw yang didelegasikan pada server MOJOKERTO dan mengarah ke IP Server PROBOLINGGO
 #### I. Konfigurasi Pada Server *MALANG*
-- Pada *MALANG*, edit file */etc/bind/jarkom/semeruc04.pw* dan ubah menjadi seperti di bawah ini sesuai dengan pembagian IP *MALANG* kelompok masing-masing.
+- Pada *MALANG*, edit file */etc/bind/jarkom/semeruc04.pw* dan ubah menjadi seperti di bawah ini:
   ```
   nano /etc/bind/jarkom/semeruc04.pw
   ```
-![DNS](gambar/17.png)
+
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/nomer6_confIP.JPG?raw=true)
 
 - Kemudian edit file **/etc/bind/named.conf.options** pada *MALANG*.
 
@@ -221,7 +221,7 @@
   ```
 
 
-![DNS](gambar/18.png)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/nomer6_confOptions.JPG?raw=true)
 
 - Kemudian edit file **/etc/bind/named.conf.local** menjadi seperti gambar di bawah:
 
@@ -233,12 +233,13 @@
   };
   ```
 
-![DNS](gambar/19.png)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/nomer6_confMalang.JPG?raw=true)
 
 - Setelah itu restart bind9
   ```
   service bind9 restart
   ```
+
 #### II. Konfigurasi Pada Server *MOJOKERTO*
 - Pada *MOJOKERTO* edit file **/etc/bind/named.conf.options**
   ```
@@ -249,11 +250,11 @@
   allow-query{any;};
   ```
 
-![DNS](gambar/20.png)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/nomer6_confOpMojokerto.JPG?raw=true)
 
 - Lalu edit file **/etc/bind/named.conf.local** menjadi seperti gambar di bawah:
 
-![DNS](gambar/21.png)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/nomer6_confMojo.JPG?raw=true)
 
 - Kemudian buat direktori dengan nama **delegasi** 
 - Copy **db.local** ke direktori delegasi dan edit namanya menjadi **gunung.semeruc04.pw** 
@@ -265,23 +266,24 @@
 
 - Kemudian edit file **/etc/bind/delegasi/gunung.semeruc04.pw** menjadi seperti dibawah ini
 
-![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/delegasi subdomain_1.JPG?raw=true)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/nomor6_confIPMojo.JPG?raw=true)
 
 - Restart bind9
   ```
   service bind9 restart
   ```
+
 #### III. Testing
 - Lakukan ping ke domain **gunung.semeruc04.pw** dari client *GRESIK*
 
-![DNS](gambar/23.png)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/nomer6_ping_gunungsemeruc04pw.JPG?raw=true)
 
 
 ### 7. subdomain dengan nama http://naik.gunung.semeruc04.pw, domain ini diarahkan ke IP Server PROBOLINGGO.
 #### I. Konfigurasi pada MOJOKERTO
 - Edit file **/etc/bind/delegasi/gunung.semeruc04.pw** menjadi seperti dibawah ini
 
-![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/delegasi sub subdomain.JPG?raw=true)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/delegasi_sub_subdomain.JPG?raw=true)
 
 - Restart bind9
   ```
@@ -290,13 +292,15 @@
 #### III. Testing
 - Lakukan ping ke domain **naik.gunung.semeruc04.pw** dari client *GRESIK*
 
-![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/delegasi sub subdomain_1.JPG?raw=true)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/delegasi_sub_subdomain_1.JPG?raw=true)
 
 ### 8. Domain http://semeruc04.pw memiliki DocumentRoot pada /var/www/semeruc04.pw. Awalnya web dapat diakses menggunakan alamat http://semeruc04.pw/index.php/home.
 
 - Pindah ke directory /etc/apache2/sites-available
 - Copy file default menjadi file semeruc04.pw.conf
+
 ![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture8_1.png?raw=true)
+
 - Lalu restart apche dengan perintah
   ```
   service apache restart
@@ -305,6 +309,7 @@
 - Download halaman web dengan perintah `wget 10.151.36.202/semeru.pw.zip`
 - Kemudian unzip file.
 - rename semeruc04.pw
+
 ![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture8_2.png?raw=true)
 
 ### 9. diaktifkan mod rewrite agar urlnya menjadi http://semeruc04.pw/home.
@@ -383,11 +388,66 @@
 ![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture14_3.png?raw=true)
 
 ### 15. web http://naik.gunung.semeruc04.pw agar diberi autentikasi password dengan username “semeru” dan password “kuynaikgunung”
+- Pindah ke directory: `cd /etc/apache2/sites-available`
+- Buka file: `nano naik.gunung.semeruc04.pw.conf` dan edit `AllowOverride None` menjadi `AllowOverride AuthConfig`
+
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/auth_config.JPG?raw=true)
+
+- Pindah ke directory: `cd /var/www/naik.gunung.semeruc04.pw/`
+- Buka file `nano .htaccess` dan edit :
+
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/basic.JPG?raw=true)
+
+- Buat folder ntuk menyimpan file yang berisi username dan password user, pada directory `/var/www/`
+```
+mkdir passwd
+cd passwd
+```
+
+- Untuk menambahkan user dan password menggunakan command berikut:
+```
+htpasswd -c .htpasswd semeru
+```
+
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/auth.JPG?raw=true)
+
+Password akan tersimpan di dalam file .httpasswd
+
+- Lalu restart apche dengan perintah
+  ```
+  service apache restart
+  ```
+- Jalankan `naik.gunung.semeruc04.pw:8888` pada browser. Tampilan broser akan muncul seperti berikut:
+
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/auth_browser.PNG?raw=true)
+
 ### 16. mengunjungi IP PROBOLINGGO akan dialihkan secara otomatis ke http://semeruc04.pw.
 -	Pindah ke directory `/etc/apache2/sites-available`
 -	Nano `000- default.conf`
--	Ubah documentRoot :
+-	Ubah document root :
 
 ![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/Picture16.png?raw=true)
 
 ### 17. request gambar yang memiliki substring “semeru” akan diarahkan menuju semeru.jpg.
+- Pindah ke directory: `cd /etc/apache2/sites-available`
+- Buka file `nano penanjakan.semeruc04.pw.conf` dan edit:
+
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/nomor17_1.JPG?raw=true)
+
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/nomor17_2.JPG?raw=true)
+
+- Pindah ke directory: `cd /var/www/penanjakan.semeruc04.pw/`
+- Buka file `nano .htaccess` dan edit :
+
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/nomor17_htaccess.JPG?raw=true)
+
+- Lalu restart apche dengan perintah
+  ```
+  service apache restart
+  ```
+- Jalankan `penanjakan.semeruc04.pw/public/images/bukansemeru.jpg` pada browser. Tampilan broser akan muncul seperti berikut:
+
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/nomor17_test.PNG?raw=true)
+
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/nomor17_test_hasil.PNG?raw=true)
+
