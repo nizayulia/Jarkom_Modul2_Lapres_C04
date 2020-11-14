@@ -419,7 +419,7 @@ Password akan tersimpan di dalam file .httpasswd
   ```
 - Jalankan `naik.gunung.semeruc04.pw:8888` pada browser. Tampilan broser akan muncul seperti berikut:
 
-![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/auth_browser.PNG?raw=true)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/auth_browser.png?raw=true)
 
 ### 16. mengunjungi IP PROBOLINGGO akan dialihkan secara otomatis ke http://semeruc04.pw.
 -	Pindah ke directory `/etc/apache2/sites-available`
@@ -447,7 +447,7 @@ Password akan tersimpan di dalam file .httpasswd
   ```
 - Jalankan `penanjakan.semeruc04.pw/public/images/bukansemeru.jpg` pada browser. Tampilan broser akan muncul seperti berikut:
 
-![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/nomor17_test.PNG?raw=true)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/nomor17_test.png?raw=true)
 
-![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/nomor17_test_hasil.PNG?raw=true)
+![alt text](https://github.com/nizayulia/Jarkom_Modul2_Lapres_C04/blob/main/Assets/nomor17_test_hasil.png?raw=true)
 
